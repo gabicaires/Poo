@@ -1,0 +1,166 @@
+EX 1:
+
+import java.util.Scanner;
+
+public class SalarioVendedor {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        // Entrada de dados
+        System.out.print("Digite o número de carros vendidos: ");
+        int numCarros = input.nextInt();
+        
+        System.out.print("Digite o valor total de vendas: ");
+        double valorVendas = input.nextDouble();
+        
+        System.out.print("Digite o salário fixo: ");
+        double salarioFixo = input.nextDouble();
+        
+        System.out.print("Digite o valor por carro vendido: ");
+        double valorPorCarro = input.nextDouble();
+        
+        // Cálculo do salário final
+        double comissaoPorCarro = numCarros * valorPorCarro;
+        double comissaoPorVenda = valorVendas * 0.05;
+        double salarioFinal = salarioFixo + comissaoPorCarro + comissaoPorVenda;
+        
+        // Saída de dados
+        System.out.printf("O salário final do vendedor é R$ %.2f.", salarioFinal);
+        
+        input.close();
+    }
+}
+
+EX 2:
+
+import java.util.Scanner;
+
+public class CaloriasRefeicao {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Escolha um prato:");
+        System.out.println("1 - Vegetariano (180 cal)");
+        System.out.println("2 - Peixe (230 cal)");
+        System.out.println("3 - Frango (250 cal)");
+        System.out.println("4 - Carne (350 cal)");
+        int prato = sc.nextInt();
+
+        System.out.println("Escolha uma sobremesa:");
+        System.out.println("1 - Abacaxi (75 cal)");
+        System.out.println("2 - Sorvete diet (110 cal)");
+        System.out.println("3 - Mousse diet (170 cal)");
+        System.out.println("4 - Mousse chocolate (200 cal)");
+        int sobremesa = sc.nextInt();
+
+        System.out.println("Escolha uma bebida:");
+        System.out.println("1 - Chá (20 cal)");
+        System.out.println("2 - Suco de laranja (70 cal)");
+        System.out.println("3 - Suco de melão (110 cal)");
+        System.out.println("4 - Refrigerante diet (65 cal)");
+        int bebida = sc.nextInt();
+
+        int calorias_prato = 0;
+        int calorias_sobremesa = 0;
+        int calorias_bebida = 0;
+
+        if (prato == 1) {
+            calorias_prato = 180;
+        } else if (prato == 2) {
+            calorias_prato = 230;
+        } else if (prato == 3) {
+            calorias_prato = 250;
+        } else if (prato == 4) {
+            calorias_prato = 350;
+        }
+
+        if (sobremesa == 1) {
+            calorias_sobremesa = 75;
+        } else if (sobremesa == 2) {
+            calorias_sobremesa = 110;
+        } else if (sobremesa == 3) {
+            calorias_sobremesa = 170;
+        } else if (sobremesa == 4) {
+            calorias_sobremesa = 200;
+        }
+
+        if (bebida == 1) {
+            calorias_bebida = 20;
+        } else if (bebida == 2) {
+            calorias_bebida = 70;
+        } else if (bebida == 3) {
+            calorias_bebida = 110;
+        } else if (bebida == 4) {
+            calorias_bebida = 65;
+        }
+
+        int total_calorias = calorias_prato + calorias_sobremesa + calorias_bebida;
+        System.out.println("Total de calorias da refeição: " + total_calorias + " cal");
+
+        sc.close();
+    }
+}
+
+
+EX 3:
+
+import java.util.Scanner;
+
+public class CaracteristicasPopulacao {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        char sexo, corOlhos, corCabelos;
+        int idade;
+        double salario, totalPessoas = 0, totalMulheres = 0, totalMulheresCastanhas = 0;
+        
+        do {
+            System.out.print("Informe o sexo (m ou f): ");
+            sexo = input.next().charAt(0);
+            while (sexo != 'm' && sexo != 'f') {
+                System.out.print("Informe o sexo (m ou f): ");
+                sexo = input.next().charAt(0);
+            }
+            
+            System.out.print("Informe a cor dos olhos (a, v, c ou p): ");
+            corOlhos = input.next().charAt(0);
+            while (corOlhos != 'a' && corOlhos != 'v' && corOlhos != 'c' && corOlhos != 'p') {
+                System.out.print("Informe a cor dos olhos (a, v, c ou p): ");
+                corOlhos = input.next().charAt(0);
+            }
+            
+            System.out.print("Informe a cor dos cabelos (l, c, p ou r): ");
+            corCabelos = input.next().charAt(0);
+            while (corCabelos != 'l' && corCabelos != 'c' && corCabelos != 'p' && corCabelos != 'r') {
+                System.out.print("Informe a cor dos cabelos (l, c, p ou r): ");
+                corCabelos = input.next().charAt(0);
+            }
+            
+            System.out.print("Informe a idade (entre 10 e 100): ");
+            idade = input.nextInt();
+            while (idade < 10 || idade > 100) {
+                System.out.print("Informe a idade (entre 10 e 100): ");
+                idade = input.nextInt();
+            }
+            
+            System.out.print("Informe o salário: ");
+            salario = input.nextDouble();
+            while (salario < 0) {
+                System.out.print("Informe o salário: ");
+                salario = input.nextDouble();
+            }
+            
+            if (idade != -1) {
+                totalPessoas++;
+                if (sexo == 'f' && idade >= 18 && idade <= 35 && corOlhos == 'c' && corCabelos == 'c') {
+                    totalMulheres++;
+                    totalMulheresCastanhas++;
+                } else if (sexo == 'f' && idade >= 18 && idade <= 35 && corCabelos == 'c') {
+                    totalMulheres++;
+                }
+            }
+        } while (idade != -1);
+        
+        double porcentagemMulheresCastanhas = (totalMulheresCastanhas / totalPessoas) * 100;
+        System.out.printf("Porcentagem de mulheres com idade entre 18 e 35 anos, olhos castanhos e cabelos castanhos: %.2f%%", porcentagemMulheresCastanhas);
+    }
+}
