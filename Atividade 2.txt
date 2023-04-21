@@ -1,0 +1,270 @@
+Exercício 1:
+
+public class Fatura {
+    private String numero;
+    private String descricao;
+    private int quantidade;
+    private double preco;
+
+    public Fatura(String numero, String descricao, int quantidade, double preco) {
+        this.numero = numero;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.preco = preco;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        if (preco > 0.0) {
+            this.preco = preco;
+        } else {
+            this.preco = 0.0;
+        }
+    }
+
+    public double getTotalFatura() {
+        double total = quantidade * preco;
+        if (total > 0.0) {
+            return total;
+        } else {
+            return 0.0;
+        }
+    }
+}
+
+
+Aplicativo:
+
+public class FaturaTeste {
+    public static void main(String[] args) {
+        Fatura f1 = new Fatura("123", "Teclado", 2, 50.0);
+        Fatura f2 = new Fatura("456", "Mouse", -3, -20.0);
+
+        System.out.println("Fatura 1:");
+        System.out.println("Número: " + f1.getNumero());
+        System.out.println("Descrição: " + f1.getDescricao());
+        System.out.println("Quantidade: " + f1.getQuantidade());
+        System.out.println("Preço: " + f1.getPreco());
+        System.out.println("Total da fatura: " + f1.getTotalFatura());
+
+        System.out.println("Fatura 2:");
+        System.out.println("Número: " + f2.getNumero());
+        System.out.println("Descrição: " + f2.getDescricao());
+        System.out.println("Quantidade: " + f2.getQuantidade());
+        System.out.println("Preço: " + f2.getPreco());
+        System.out.println("Total da fatura: " + f2.getTotalFatura());
+    }
+}
+
+
+Exercício 2:
+
+public class Empregado {
+    private String nome;
+    private String sobrenome;
+    private double salarioMensal;
+
+    public Empregado(String nome, String sobrenome, double salarioMensal) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.salarioMensal = salarioMensal;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public double getSalarioMensal() {
+        return salarioMensal;
+    }
+
+    public void setSalarioMensal(double salarioMensal) {
+        this.salarioMensal = salarioMensal;
+    }
+
+    public double getSalarioAnual() {
+        return salarioMensal * 12;
+    }
+
+    public void aumentarSalario(double percentual) {
+        salarioMensal *= (1 + percentual/100);
+    }
+}
+
+Aplicativo:
+
+public class EmpregadoTeste {
+    public static void main(String[] args) {
+        Empregado empregado1 = new Empregado("João", "Silva", 5000);
+        Empregado empregado2 = new Empregado("Maria", "Souza", 7000);
+
+        System.out.println("Salário anual do empregado " + empregado1.getNome() + " " + empregado1.getSobrenome() + ": " + empregado1.getSalarioAnual());
+        System.out.println("Salário anual do empregado " + empregado2.getNome() + " " + empregado2.getSobrenome() + ": " + empregado2.getSalarioAnual());
+
+        empregado1.aumentarSalario(10);
+        empregado2.aumentarSalario(10);
+
+        System.out.println("Salário anual do empregado " + empregado1.getNome() + " " + empregado1.getSobrenome() + " após aumento: " + empregado1.getSalarioAnual());
+        System.out.println("Salário anual do empregado " + empregado2.getNome() + " " + empregado2.getSobrenome() + " após aumento: " + empregado2.getSalarioAnual());
+    }
+}
+
+Exercício 3:
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+// Classe Pessoa
+public class Pessoa {
+    private String nome;
+    private LocalDate dataNascimento;
+    private int idade;
+
+    public Pessoa(String nome, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.idade = calculaIdade(LocalDate.now());
+    }
+
+    public int calculaIdade(LocalDate dataAtual) {
+        Period periodo = Period.between(this.dataNascimento, dataAtual);
+        return periodo.getYears();
+    }
+
+    public int informaIdade() {
+        return idade;
+    }
+
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Nome: " + nome + ", Data de Nascimento: " + dataNascimento.format(formatter) + ", Idade: " + idade;
+    }
+}
+
+// Classe Loja - classe principal para testar as outras classes
+public class Loja {
+    public static void main(String[] args) {
+        Pessoa albertEinstein = new Pessoa("Albert Einstein", LocalDate.of(1879, 3, 14));
+        Pessoa isaacNewton = new Pessoa("Isaac Newton", LocalDate.of(1643, 1, 4));
+
+        System.out.println(albertEinstein.toString());
+        System.out.println(isaacNewton.toString());
+
+        LocalDate dataAtual = LocalDate.of(2023, 4, 21);
+        System.out.println("Idade de Albert Einstein: " + albertEinstein.calculaIdade(dataAtual) + " anos");
+        System.out.println("Idade de Isaac Newton: " + isaacNewton.calculaIdade(dataAtual) + " anos");
+    }
+}
+
+
+Exercício 4:
+
+// Classe Produto - superclasse para os produtos vendidos na loja
+public class Produto {
+    protected String nome;
+    protected double preco;
+
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+}
+
+// Classe Livro - subclasse de Produto para os livros vendidos na loja
+public class Livro extends Produto {
+    private String autor;
+
+    public Livro(String nome, double preco, String autor) {
+        super(nome, preco);
+        this.autor = autor;
+    }
+
+    public void imprimeDetalhes() {
+        System.out.println("Livro: " + nome + " - Autor: " + autor + " - Preço: " + preco);
+    }
+}
+
+// Classe CD - subclasse de Produto para os CDs vendidos na loja
+public class CD extends Produto {
+    private int numFaixas;
+
+    public CD(String nome, double preco, int numFaixas) {
+        super(nome, preco);
+        this.numFaixas = numFaixas;
+    }
+
+    public void imprimeDetalhes() {
+        System.out.println("CD: " + nome + " - Número de Faixas: " + numFaixas + " - Preço: " + preco);
+    }
+}
+
+// Classe DVD - subclasse de Produto para os DVDs vendidos na loja
+public class DVD extends Produto {
+    private int duracao;
+
+    public DVD(String nome, double preco, int duracao) {
+        super(nome, preco);
+        this.duracao = duracao;
+    }
+
+    public void imprimeDetalhes() {
+        System.out.println("DVD: " + nome + " - Duração: " + duracao + " minutos - Preço: " + preco);
+    }
+}
+
+// Classe Loja - classe principal para testar as outras classes
+public class Loja {
+    public static void main(String[] args) {
+        Livro livro1 = new Livro("Harry Potter", 59.90, "J.K Rolling");
+        CD cd1 = new CD("Thriller", 29.90, 9);
+        DVD dvd1 = new DVD("Fight Club", 39.90, 219);
+        Livro livro2 = new Livro("Dom Casmurro", 19.90, "Machado de Assis");
+        DVD dvd2 = new DVD("Star Wars: A Nova Esperança", 49.90, 121);
+
+        livro1.imprimeDetalhes();
+        cd1.imprimeDetalhes();
+        dvd1.imprimeDetalhes();
+        livro2.imprimeDetalhes();
+        dvd2.imprimeDetalhes();
+    }
+}
