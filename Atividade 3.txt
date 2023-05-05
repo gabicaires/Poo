@@ -1,0 +1,360 @@
+Exercício 1: 
+
+public class Animal {
+    private String nome;
+    private double peso;
+
+    public Animal(String nome, double peso) {
+        this.nome = nome;
+        this.peso = peso;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public String toString() {
+        return "Nome: " + nome + ", Peso: " + peso;
+    }
+}
+
+public class Peixe extends Animal {
+    private String tipoHabitat;
+
+    public Peixe(String nome, double peso, String tipoHabitat) {
+        super(nome, peso);
+        this.tipoHabitat = tipoHabitat;
+    }
+
+    public String getTipoHabitat() {
+        return tipoHabitat;
+    }
+
+    public String toString() {
+        return super.toString() + ", Tipo de Habitat: " + tipoHabitat;
+    }
+}
+
+public class Cachorro extends Animal {
+    private String raca;
+
+    public Cachorro(String nome, double peso, String raca) {
+        super(nome, peso);
+        this.raca = raca;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public String toString() {
+        return super.toString() + ", Raça: " + raca;
+    }
+}
+
+public class TesteClasses {
+    public static void main(String[] args) {
+        Animal animal = new Animal("Animal Genérico", 10);
+        Peixe peixe = new Peixe("Tubarão Martelo", 500, "Oceano");
+        Cachorro cachorro = new Cachorro("Golden Retriever", 25, "Raça");
+
+        System.out.println(animal.toString());
+        System.out.println(peixe.toString());
+        System.out.println(cachorro.toString());
+    }
+}
+----------------------------------------------------------------------------------------------------
+
+Exercício 2:
+
+
+
+----------------------------------------------------------------------------------------------------
+
+Exercício 3:
+
+// Classe Pessoa
+public class Pessoa {
+    private String nome;
+    private String endereco;
+    private String telefone;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+}
+
+// Classe Fornecedor (subclasse de Pessoa)
+public class Fornecedor extends Pessoa {
+    private double valorCredito;
+    private double valorDivida;
+
+    public double getValorCredito() {
+        return valorCredito;
+    }
+
+    public void setValorCredito(double valorCredito) {
+        this.valorCredito = valorCredito;
+    }
+
+    public double getValorDivida() {
+        return valorDivida;
+    }
+
+    public void setValorDivida(double valorDivida) {
+        this.valorDivida = valorDivida;
+    }
+
+    public double obterSaldo() {
+        return this.valorCredito - this.valorDivida;
+    }
+}
+
+// Classe Empregado (subclasse de Pessoa)
+public class Empregado extends Pessoa {
+    private int codigoSetor;
+    private double salarioBase;
+    private double imposto;
+
+    public int getCodigoSetor() {
+        return codigoSetor;
+    }
+
+    public void setCodigoSetor(int codigoSetor) {
+        this.codigoSetor = codigoSetor;
+    }
+
+    public double getSalarioBase() {
+        return salarioBase;
+    }
+
+    public void setSalarioBase(double salarioBase) {
+        this.salarioBase = salarioBase;
+    }
+
+    public double getImposto() {
+        return imposto;
+    }
+
+    public void setImposto(double imposto) {
+        this.imposto = imposto;
+    }
+
+    public double calcularSalario() {
+        return this.salarioBase - (this.salarioBase * (this.imposto/100));
+    }
+}
+
+// Classe Administrador (subclasse de Empregado)
+public class Administrador extends Empregado {
+    private double ajudaDeCusto;
+
+    public double getAjudaDeCusto() {
+        return ajudaDeCusto;
+    }
+
+    public void setAjudaDeCusto(double ajudaDeCusto) {
+        this.ajudaDeCusto = ajudaDeCusto;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return super.calcularSalario() + this.ajudaDeCusto;
+    }
+}
+
+// Classe Operario (subclasse de Empregado)
+public class Operario extends Empregado {
+    private double valorProducao;
+    private double comissao;
+
+    public double getValorProducao() {
+        return valorProducao;
+    }
+
+    public void setValorProducao(double valorProducao) {
+        this.valorProducao = valorProducao;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
+
+    public double calcularSalario() {
+        return super.calcularSalario() + (this.valorProducao * (this.comissao/100));
+    }
+}
+
+// Classe Vendedor (subclasse de Empregado)
+public class Vendedor extends Empregado {
+    private double valorVendas;
+    private doubler comissao;
+
+    public double getValorVendas(){
+	  returne valorVendas;
+    }
+
+    public void setValorVendas(double valorVendas) {
+	  this.valorVendas = valorVendas;
+    }
+
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
+
+    public double calcularSalario() {
+        return super.calcularSalario() + (this.valorProducao * (this.comissao/100));
+    }
+}
+	
+----------------------------------------------------------------------------------------------------
+
+Exercício 4:
+
+public class Casa {
+    private int numQuartos;
+    private int numBanheiros;
+    private Cozinha cozinha;
+
+    public Casa(int numQuartos, int numBanheiros, Cozinha cozinha) {
+        this.numQuartos = numQuartos;
+        this.numBanheiros = numBanheiros;
+        this.cozinha = cozinha;
+    }
+
+    public int getNumQuartos() {
+        return numQuartos;
+    }
+
+    public void setNumQuartos(int numQuartos) {
+        this.numQuartos = numQuartos;
+    }
+
+    public int getNumBanheiros() {
+        return numBanheiros;
+    }
+
+    public void setNumBanheiros(int numBanheiros) {
+        this.numBanheiros = numBanheiros;
+    }
+
+    public Cozinha getCozinha() {
+        return cozinha;
+    }
+
+    public void setCozinha(Cozinha cozinha) {
+        this.cozinha = cozinha;
+    }
+}
+
+public class Cozinha {
+    private int numPias;
+    private int numArmarios;
+
+    public Cozinha(int numPias, int numArmarios) {
+        this.numPias = numPias;
+        this.numArmarios = numArmarios;
+    }
+
+    public int getNumPias() {
+        return numPias;
+    }
+
+    public void setNumPias(int numPias) {
+        this.numPias = numPias;
+    }
+
+    public int getNumArmarios() {
+        return numArmarios;
+    }
+
+    public void setNumArmarios(int numArmarios) {
+        this.numArmarios = numArmarios;
+    }
+}
+
+public class Quarto {
+    private int numCamas;
+    private int numComodas;
+
+    public Quarto(int numCamas, int numComodas) {
+        this.numCamas = numCamas;
+        this.numComodas = numComodas;
+    }
+
+    public int getNumCamas() {
+        return numCamas;
+    }
+
+    public void setNumCamas(int numCamas) {
+        this.numCamas = numCamas;
+    }
+
+    public int getNumComodas() {
+        return numComodas;
+    }
+
+    public void setNumComodas(int numComodas) {
+        this.numComodas = numComodas;
+    }
+}
+
+public class Banheiro {
+    private int numVasos;
+    private int numChuveiros;
+
+    public Banheiro(int numVasos, int numChuveiros) {
+        this.numVasos = numVasos;
+        this.numChuveiros = numChuveiros;
+    }
+
+    public int getNumVasos() {
+        return numVasos;
+    }
+
+    public void setNumVasos(int numVasos) {
+        this.numVasos = numVasos;
+    }
+
+    public int getNumChuveiros() {
+        return numChuveiros;
+    }
+
+    public void setNumChuveiros(int numChuveiros) {
+        this.numChuveiros = numChuveiros;
+    }
+}
+
+
